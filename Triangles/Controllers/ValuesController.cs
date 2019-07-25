@@ -7,34 +7,50 @@ using System.Web.Http;
 
 namespace Triangles.Controllers
 {
-    [Authorize]
     public class ValuesController : ApiController
     {
+        string[] validInputRows =  new string [] { "a", "b", "c", "d", "e", "f", };
+
         // GET api/values
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
+        // localhost:50122/api/values/get
+
         // GET api/values/5
-        public string Get(int id)
+        public string Get(int column, string row)
         {
-            return "value";
+            if (!ValidateColumnInput(column))
+            {
+                throw new Exception("Please enter a column number between 1 and 12");
+            }
+            if (!ValidateRowInput(row))
+            {
+                throw new Exception("Please enter a row letter between a and f");
+            }
+            return "my test";
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        private bool ValidateColumnInput(int column)
         {
+            bool validInput = false;
+            if (column >= 1 && column <=12)
+            {
+                validInput = true;
+            }
+            return validInput;
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        private bool ValidateRowInput(string row)
         {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            bool validInput = false;
+            if (validInputRows.Contains(row))
+            {
+                validInput = true;
+            }
+            return validInput;
         }
     }
 }
