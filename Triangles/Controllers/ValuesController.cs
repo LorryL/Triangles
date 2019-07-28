@@ -18,7 +18,7 @@ namespace Triangles.Controllers
         }
 
         // GET api/values/5
-        public string Get(int column, string row)
+        public string[] Get(int column, string row)
         {
             InputValidationProvider.ValidateUserInput(row, column);
             return CoordinatesProvider.CalculateCoordinates(row, column);
