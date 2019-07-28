@@ -21,6 +21,17 @@ namespace Triangles.Providers
             }
         }
 
+        public static void ValidateVectorPoints(int[] vectorPoints)
+        {
+            foreach (int point in vectorPoints)
+            {
+                if (point < 0 || point > 60 || (point % 10 != 0))
+                {
+                    throw new Exception("Inputed coordinates must be within the range 0 - 60 and divisible by 10");
+                }
+            }
+        }
+
 
         private static bool ValidateColumnInput(int column)
         {
