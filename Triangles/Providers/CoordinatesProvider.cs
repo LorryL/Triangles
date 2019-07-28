@@ -25,7 +25,7 @@ namespace Triangles.Providers
 
             triangleCoordinates[0] = CalculateV1Coordinates(rowNumber, column);
             triangleCoordinates[1] = CalculateV2Coordinates(rowNumber, column);
-            triangleCoordinates[2] = "still to be calculated"; 
+            triangleCoordinates[2] = CalculateV3Coordinates(rowNumber, column);
 
             return triangleCoordinates;
 
@@ -80,6 +80,19 @@ namespace Triangles.Providers
             int v1y = row * 10 - 10;
 
             return string.Format("V2({0}, {1})", v1x, v1y);
+        }
+
+        private static string CalculateV3Coordinates(int row, int column)
+        {
+            if (column % 2 != 0)
+            {
+                column++;
+            }
+
+            int v1x = (column * 10) / 2;
+            int v1y = row * 10;
+
+            return string.Format("V3({0}, {1})", v1x, v1y);
         }
     }
 }
